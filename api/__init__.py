@@ -8,7 +8,7 @@ def create_app():
     app = Flask(__name__, instance_relative_config = False)
     app.config.from_object('config.DevConfig')
     db.init_app(app)
-    api = Api(app)    
+    api = Api(app)
 
     with app.app_context():
         from . import routes
@@ -19,4 +19,6 @@ def create_app():
         api.add_resource(routes.DroneImageObservationResource)
         api.add_resource(routes.SensorObservationResource)
         api.add_resource(routes.CaseResource)
+
+        api.add_resource(routes.NWSFeedResource)
         return app

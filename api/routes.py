@@ -1,5 +1,5 @@
 from flask import current_app as app
-from .models import db, DroneDevice, SensorDevice, Observation, SensorObservation, DroneImageObservation, Case
+from .models import db, DroneDevice, SensorDevice, Observation, SensorObservation, DroneImageObservation, Case, NationalWeatherServiceFeed
 
 from flask_potion import ModelResource
 
@@ -26,3 +26,9 @@ class DroneDeviceResource(ModelResource):
 class CaseResource(ModelResource):
     class Meta:
         model = Case
+
+
+class NWSFeedResource(ModelResource):
+    class Meta:
+        model = NationalWeatherServiceFeed
+        name = 'nws_feed'

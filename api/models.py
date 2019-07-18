@@ -64,3 +64,26 @@ class Case(db.Model):
     description = db.Column(db.Text, nullable = True)
 
     observations = db.relationship('Observation', backref = 'case', lazy = True)
+
+
+class NationalWeatherServiceFeed(db.Model):
+    __tablename__ = 'nws_feed_data'
+
+    id = db.Column(db.Integer, primary_key = True)
+    phenomena = db.Column(db.String(50), nullable = True)
+    eventDescription = db.Column(db.String(300), nullable = True)
+    severityCode = db.Column(db.Integer, nullable = True)
+    severity = db.Column(db.String(50), nullable = True)
+    urgency = db.Column(db.String(50), nullable = True)
+    urgencyCode = db.Column(db.Integer, nullable = True)
+    certainty = db.Column(db.String(50), nullable = True)
+    certaintyCode = db.Column(db.Integer, nullable = True)
+    onsetTimeLocal = db.Column(db.String(50), nullable = True)
+    onsetTimeLocalTimeZone = db.Column(db.String(20), nullable = True)
+    latitude = db.Column(db.Float, nullable = True)
+    longitude = db.Column(db.Float, nullable = True)
+    areaId = db.Column(db.String(50), nullable = True)
+    areaName = db.Column(db.String(200), nullable = True)
+    countryCode = db.Column(db.String(50), nullable = True)
+    countryName = db.Column(db.String(200), nullable = True)
+    identifier = db.Column(db.String(150), nullable = True)

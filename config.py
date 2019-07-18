@@ -17,6 +17,7 @@ class DevConfig(Config):
     TESTING = True
     DEBUG = True
 
-class ProductionConfig(Config):
+class ProdConfig(Config):
     TESTING = False
     DEBUG = False
+    SQLALCHEMY_DATABASE_URI='ibm_db_sa://tcc29831:l0fx4bnrm6h8j0-g@dashdb-txn-sbox-yp-dal09-04.services.dal.bluemix.net:50000/BLUDB'

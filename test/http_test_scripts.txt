@@ -1,1 +1,2 @@
 http :5000/sensor lat:=100 lon:=400 description='haha' device_id='abx44'
+http :5000/drone description='FireHawk 76 MAXXX' device_id='FH765'
