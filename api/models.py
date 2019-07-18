@@ -8,14 +8,14 @@ class Device(db.Model):
 class SensorDevice(Device):
     __tablename__ = 'sensor'
 
-    deviceId = db.Column(db.String(250), primary_key = True)
+    device_id = db.Column(db.String(250), nullable = True)
     lat = db.Column(db.Float)
     lon = db.Column(db.Float)
     observations = db.relationship('SensorObservation', backref = 'sensor', lazy = True, uselist = True)
 
 class DroneDevice(Device):
     __tablename__ = 'drone'
-    deviceId = db.Column(db.String(250), primary_key = True)
+    device_id = db.Column(db.String(250), nullable = True)
 
 class Observation(db.Model):
     __tablename__ = 'observation'
