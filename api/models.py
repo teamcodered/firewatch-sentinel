@@ -72,6 +72,7 @@ class NationalWeatherServiceFeed(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     phenomena = db.Column(db.String(50), nullable = True)
     eventDescription = db.Column(db.String(300), nullable = True)
+    eventTrackingNumber = db.Column(db.String(150), nullable = True)
     severityCode = db.Column(db.Integer, nullable = True)
     severity = db.Column(db.String(50), nullable = True)
     urgency = db.Column(db.String(50), nullable = True)
