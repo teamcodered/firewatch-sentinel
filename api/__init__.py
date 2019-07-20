@@ -8,13 +8,14 @@ db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__, instance_relative_config = False)
-    app.config.from_object('config.DevConfig')
+    app.config.from_object('config.ProdConfig')
     db.init_app(app)
     api = Api(app)    
 
     with app.app_context():
         from . import routes
         from . import models
+        # db.drop_all()
         db.create_all()
 
         # Add admin models
