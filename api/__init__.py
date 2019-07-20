@@ -36,5 +36,5 @@ def create_app():
         api.add_resource(routes.CaseResource)
 
         api.add_resource(routes.NWSFeedResource)
-                
+        
         return app
