@@ -8,7 +8,7 @@ db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__, instance_relative_config = False)
-    app.config.from_object('config.ProdConfig')
+    app.config.from_object('config.DevConfig')
     db.init_app(app)   
 
     with app.app_context():
@@ -16,7 +16,16 @@ def create_app():
         from . import models
         # db.drop_all()
         db.create_all()
-
+                
+        api = Api(app)  
+        api.add_resource(routes.DroneDeviceResource)
+        api.add_resource(routes.SensorDeviceResource)
+        api.add_resource(routes.ObservationResource)
+        api.add_resource(routes.DroneImageObservationResource)
+        api.add_resource(routes.SensorObservationResource)
+        api.add_resource(routes.CaseResource)
+        api.add_resource(routes.NWSFeedResource)        
+        
         admin = Admin(app, name = 'firewatch sentinel', template_mode = 'bootstrap3')
         admin.add_view(ModelView(models.SensorDevice, db.session))
         admin.add_view(ModelView(models.DroneDevice, db.session))
@@ -25,14 +34,5 @@ def create_app():
         admin.add_view(ModelView(models.SensorObservation, db.session))
         admin.add_view(ModelView(models.DroneImageObservation, db.session))
         admin.add_view(ModelView(models.Case, db.session))
-        
-        api = Api(app)  
-        api.add_resource(routes.DroneDeviceResource)
-        api.add_resource(routes.SensorDeviceResource)
-        api.add_resource(routes.ObservationResource)
-        api.add_resource(routes.DroneImageObservationResource)
-        api.add_resource(routes.SensorObservationResource)
-        api.add_resource(routes.CaseResource)
-        api.add_resource(routes.NWSFeedResource)       
         
         return app
