@@ -9,9 +9,7 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__, instance_relative_config = False)
     app.config.from_object('config.ProdConfig')
-    db.init_app(app)
-    api = Api(app)    
-    
+    db.init_app(app)   
 
     with app.app_context():
         from . import routes
@@ -28,6 +26,7 @@ def create_app():
         admin.add_view(ModelView(models.DroneImageObservation, db.session))
         admin.add_view(ModelView(models.Case, db.session))
         
+        api = Api(app)  
         api.add_resource(routes.DroneDeviceResource)
         api.add_resource(routes.SensorDeviceResource)
         api.add_resource(routes.ObservationResource)
