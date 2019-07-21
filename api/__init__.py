@@ -11,6 +11,7 @@ def create_app():
     app.config.from_object('config.ProdConfig')
     db.init_app(app)
     api = Api(app)    
+    
 
     with app.app_context():
         from . import routes
@@ -18,7 +19,6 @@ def create_app():
         # db.drop_all()
         db.create_all()
 
-        # Add admin models
         admin = Admin(app, name = 'firewatch sentinel', template_mode = 'bootstrap3')
         admin.add_view(ModelView(models.SensorDevice, db.session))
         admin.add_view(ModelView(models.DroneDevice, db.session))
@@ -27,14 +27,13 @@ def create_app():
         admin.add_view(ModelView(models.SensorObservation, db.session))
         admin.add_view(ModelView(models.DroneImageObservation, db.session))
         admin.add_view(ModelView(models.Case, db.session))
-
+        
         api.add_resource(routes.DroneDeviceResource)
         api.add_resource(routes.SensorDeviceResource)
         api.add_resource(routes.ObservationResource)
         api.add_resource(routes.DroneImageObservationResource)
         api.add_resource(routes.SensorObservationResource)
         api.add_resource(routes.CaseResource)
-
-        api.add_resource(routes.NWSFeedResource)
+        api.add_resource(routes.NWSFeedResource)       
         
         return app
