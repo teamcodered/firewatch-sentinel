@@ -6,8 +6,8 @@ from analytics.routes import setup_routes
 
 app = create_app()
 celery = make_celery(app)
-setup_tasks(celery)
-setup_routes(app, celery)
+tasks = setup_tasks(celery)
+setup_routes(app, celery, tasks)
 
 port = os.getenv('PORT', 5000)
 if __name__ == '__main__':
