@@ -28,6 +28,9 @@ class Config:
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'firewatch.db')
     FLASK_ADMIN_SWATCH = 'cerulean'
+    
+    CELERY_BROKER_URL = 'amqp://nnghcsne:D_bwsuaOhb4nu76ZcX_5Qlc0z0peVNKx@orangutan.rmq.cloudamqp.com/nnghcsne'
+    CELERY_RESULT_BACKEND = 'db+sqlite:///task-results.sqlite'
     # SQLALCHEMY_DATABASE_URI = environ['SQLALCHEMY_DATABASE_URI']
 
 class DevConfig(Config):
@@ -37,7 +40,7 @@ class DevConfig(Config):
 class ProdConfig(Config):
     TESTING = False
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI=os.environ.get('SQLALCHEMY_DATABASE_URI')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
     # SQLALCHEMY_ENGINE_OPTIONS = {'connect_args': {'DB2_DEFERRED_PREPARE_SEMANTICS': 'yes'}}
 
 class RemoteProdConfig(Config):
