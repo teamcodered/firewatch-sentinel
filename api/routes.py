@@ -1,5 +1,5 @@
 from flask import current_app as app
-from .models import db, DroneDevice, SensorDevice, Observation, SensorObservation, DroneImageObservation, Case, NationalWeatherServiceFeed
+from .models import db, DroneDevice, SensorDevice, Observation, SensorObservation, DroneImageObservation, Case, NationalWeatherServiceFeed, FIRMSDataEntry
 
 from flask_potion import ModelResource
 
@@ -38,3 +38,8 @@ class NWSFeedResource(ModelResource):
     class Meta:
         model = NationalWeatherServiceFeed
         name = 'nws-feed'
+
+class FIRMSFeedResource(ModelResource):
+    class Meta:
+        model = FIRMSDataEntry
+        name = 'nasa-firms-feed'

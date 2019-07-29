@@ -18,8 +18,8 @@ def setup_routes(app, celery, tasks):
         
         dl_firms_data_task = tasks[0]
         result = dl_firms_data_task.delay(region,region_data_url)
-        result.wait()
-        return make_response('Downloaded data for region: ' + region_data_url, 200)  
+        file = result.wait()
+        return make_response('Downloaded and imported data for region: {} into {} '.format(region_data_url, file), 200)  
 
     print('app routes setup complete ..')   
 

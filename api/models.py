@@ -88,3 +88,22 @@ class NationalWeatherServiceFeed(db.Model):
     countryCode = db.Column(db.String(50), nullable = True)
     countryName = db.Column(db.String(200), nullable = True)
     identifier = db.Column(db.String(150), nullable = True)
+
+
+class FIRMSDataEntry(db.Model):
+    __tablename__ = 'firms_viirs_fire_spot'
+
+    id = db.Column(db.Integer, primary_key = True)
+    latitude = db.Column(db.Float, nullable = True)
+    longitude = db.Column(db.Float, nullable = True)
+    bright_ti4 = db.Column(db.Float, nullable = True)
+    scan = db.Column(db.Float, nullable = True)
+    track = db.Column(db.Float, nullable = True)
+    acq_date = db.Column(db.DateTime, nullable = True)
+    acq_time = db.Column(db.Integer, nullable = True)
+    satellite = db.Column(db.String(5), nullable = True)
+    confidence = db.Column(db.String(15), nullable = True)
+    version = db.Column(db.String(10), nullable = True)
+    bright_ti5 = db.Column(db.Float, nullable = True)
+    frp = db.Column(db.Float, nullable = True)
+    daynight = db.Column(db.String(5), nullable = True)
