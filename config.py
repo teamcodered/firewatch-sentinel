@@ -53,3 +53,9 @@ class RemoteProdConfig(Config):
 class SQLiteProdConfig(Config):
     TESTING = False
     DEBUG = False
+
+class ProdPostgresConfig(Config):
+    TESTING = False
+    DEBUG = False
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:5Irryft2xoat4waG@35.202.56.48/firewatch'
+    CELERY_RESULT_BACKEND = 'postgresql://postgres:5Irryft2xoat4waG@35.202.56.48/firewatch'
