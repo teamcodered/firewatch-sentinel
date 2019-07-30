@@ -41,9 +41,15 @@ class ProdConfig(Config):
     TESTING = False
     DEBUG = False
     SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
+    # CELERY_RESULT_BACKEND = 'rpc:///'
     # SQLALCHEMY_ENGINE_OPTIONS = {'connect_args': {'DB2_DEFERRED_PREPARE_SEMANTICS': 'yes'}}
 
 class RemoteProdConfig(Config):
     TESTING = False
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = load_remote_connection_info()
+    SQLALCHEMY_DATABASE_URI = 'db2://tcc29831:l0fx4bnrm6h8j0-g@dashdb-txn-sbox-yp-dal09-04.services.dal.bluemix.net:50000/BLUDB'
+    CELERY_RESULT_BACKEND = 'db+db2://tcc29831:l0fx4bnrm6h8j0-g@dashdb-txn-sbox-yp-dal09-04.services.dal.bluemix.net:50000/BLUDB'
+
+class SQLiteProdConfig(Config):
+    TESTING = False
+    DEBUG = False
